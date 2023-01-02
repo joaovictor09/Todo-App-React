@@ -28,9 +28,22 @@ O aplicativo se baseia no famoso app de gerenciamento de tarefas, todo.
 
 - [x] Criar e remover tarefas;
 - [x] Contador de tarefas totais x tarefas completas;
-- [x] Adicionar tags nas tarefas;
-- [ ] Criar backend
-- [ ] Fazer sistema de autenticação 
+- [x] Separar as tarefas por tarefas pendentes e tarefas completas;
+- [x] Mostrar quando não tem tarefas cadastradas, pendentes ou completas;
+- [x] Salvar tarefas nos cookies.
+
+<!-- - [ ] Adicionar tags nas tarefas;
+- [ ] Criar backend;
+- [ ] Fazer sistema de autenticação ; -->
+
+---
+
+## 🎨 Layout
+
+https://www.figma.com/file/T4gow4wBi5miqLdtHlphBJ
+
+By 
+mysel
 
 ---
 

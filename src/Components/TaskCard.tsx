@@ -7,7 +7,7 @@ interface TaskCardProps {
   completed: boolean,
   date: number,
   deleteTask: (date: number) => void,
-  setTaskCompleted: (date: number) => void,
+  setTaskCompleted: () => void,
 }
 
 export function TaskCard(props: TaskCardProps){
@@ -21,7 +21,7 @@ export function TaskCard(props: TaskCardProps){
           className="border-2 w-6 h-6 border-violet-500 rounded-full flex items-center justify-center"
           onCheckedChange={(checked: boolean) => checked === true ? setCompleted(true) : setCompleted(false)}
           checked={completed}
-          onClick={() => props.setTaskCompleted(props.date)}
+          onClick={props.setTaskCompleted}
         >
           <Checkbox.Indicator>
             <Check className="text-violet-500 " weight="bold"/>
