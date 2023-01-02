@@ -1,3 +1,6 @@
+<div width="full" height="max" align="center">
+    <img src="./src/assets/logo.svg" height="100em"/>
+</div>
 <h1 align="center">
     <a href="#"> Todo App </a>
 </h1>
@@ -43,7 +46,7 @@ O aplicativo se baseia no famoso app de gerenciamento de tarefas, todo.
 https://www.figma.com/file/T4gow4wBi5miqLdtHlphBJ
 
 By 
-mysel
+[João Victor](https://github.com/joaovictor09/)
 
 ---
 
@@ -103,6 +106,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - Typescript
 - React.js
 - RadixUI
+- Universal Cookie
 
 ---
 
