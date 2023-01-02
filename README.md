@@ -12,11 +12,10 @@
 </h4>
 
 <p align="center">
- <a href="#-about">About</a> •
- <a href="#-Features">Features</a> •
+ <a href="#-sobre">Sobre</a> •
+ <a href="#funcionalidades">Funcionalidades</a> •
  <a href="#-layout">Layout</a> • 
- <a href="#-tech-stack">Tech Stack</a> • 
- <a href="#-author">Author</a> • 
+ <a href="#-tecnologias">Tecnologias</a> • 
  <a href="#-license">License</a>
 
 </p>
@@ -34,12 +33,6 @@ O aplicativo se baseia no famoso app de gerenciamento de tarefas, todo.
 - [x] Separar as tarefas por tarefas pendentes e tarefas completas;
 - [x] Mostrar quando não tem tarefas cadastradas, pendentes ou completas;
 - [x] Salvar tarefas nos cookies.
-
-<!-- - [ ] Adicionar tags nas tarefas;
-- [ ] Criar backend;
-- [ ] Fazer sistema de autenticação ; -->
-
----
 
 ## 🎨 Layout
 
@@ -113,10 +106,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Sobre:
 
-
 Um projeto elaborado pra fazer um controle de tarefas, facilitando a organização do usuário.
-
-
 
 ---
 
