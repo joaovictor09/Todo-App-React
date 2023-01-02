@@ -45,11 +45,6 @@ By
 
 ## 🚀 Como executar o projeto.
 
-Este projeto é divido em uma parte:
-1. Frontend 
-<!-- 2. Backend (API Json-Server)  -->
-
-
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
@@ -75,7 +70,7 @@ $ npm install
 # Rode a aplicação em modo de desenvolvimento:
 $ npm run dev
 
-# O servidor inciará na porta:5173 - acesse <   http://127.0.0.1:5173/ >
+# O servidor inciará na porta:5173 - acesse <   http://localhost:5173/ >
 ```
 ---
 
