@@ -1,5 +1,4 @@
 import { Checks, ListChecks, PlusCircle, Scroll, Warning } from "phosphor-react"
-import { useCookies } from "react-cookie";
 import Cookies from 'universal-cookie';
 import { useEffect, useState } from "react"
 import * as ScrollArea from '@radix-ui/react-scroll-area';
@@ -17,8 +16,6 @@ export function App() {
   const cookies = new Cookies();
   const [tasks, setTasks ] = useState<TasksProps[]>(cookies.get('tasks') || []);
   const [taskTitle, setTaskTitle] = useState("");
-  // const [cookies, setCookie] = useCookies(['tasks']);
-
 
   function addTask(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault();
@@ -50,13 +47,13 @@ export function App() {
   }
 
   useEffect(() => {
-    // setCookie('tasks', tasks, { path: '/' })
+    // Save tasks
     cookies.set('tasks', JSON.stringify(tasks), { path: '/' });
     console.log("tasks", cookies.get('tasks'));
   }, [tasks])
 
   return (
-    <div className="w-full h-screen flex flex-col items-center bg-zinc-900 overflow-clip">
+    <div className="w-full h-screen flex flex-col items-center bg-zinc-900 md:overflow-visible">
       <div className="flex items-center py-16 gap-4">
         <ListChecks size="32" className="text-violet-500"/>
         <h1 className="text-2xl font-bold text-white">Todo</h1>
@@ -66,17 +63,19 @@ export function App() {
           onSubmit={e => addTask(e)}
           className="max-w-2xl w-full"
         >
-          <div className="max-w-2xl w-full flex gap-8 h-full">
+          <div className="max-w-2xl w-full flex gap-2 h-full flex-col px-5 items-center
+                          md:flex-row md:px-0 md:gap-8">
             <input 
               type="text"
               onChange={e => setTaskTitle(e.target.value)}
               value={taskTitle}
               minLength={4}
-              className="w-full bg-zinc-700 rounded px-5 placeholder:text-zinc-400 text-white outline-none focus:border border-zinc-400"
+              className="w-full bg-zinc-700 rounded px-5 py-3 placeholder:text-zinc-400 text-white outline-none focus:border border-zinc-400"
               placeholder="Insira sua tarefa"
             />
             <button 
-              className="flex items-center gap-2 p-3 bg-zinc-700 rounded text-white hover:bg-zinc-600 transition"
+              className="flex items-center gap-2 px-10 py-3 bg-zinc-700 rounded text-white hover:bg-zinc-600 transition w-max
+                          md:p-3"
               type="submit"
             >
               Criar
@@ -85,7 +84,7 @@ export function App() {
           </div>
         </form>
 
-      <div className="w-full h-full bg-zinc-800 mt-8 flex flex-col items-center py-5">
+      <div className="w-full h-full bg-cover bg-zinc-800 mt-8 flex flex-col items-center py-5 lg:pt-5 px-5 md:px-0">
         <div className="max-w-2xl w-full flex flex-col items-center">
 
           {/* Task Status */}
@@ -129,7 +128,7 @@ export function App() {
                   tasks.filter(task => task.completed == false).length >= 1
                   ? 
                   <ScrollArea.Root className="mt-5 flex max-h-[250px] w-full gap-2 scroll-m-1">
-                    <ScrollArea.Viewport className="w-full">
+                    <ScrollArea.Viewport className="w-full rounded">
                       <div className="w-full pr-1 flex flex-col gap-2">
                         {tasks.filter(task => task.completed == false).map(task => 
                           <TaskCard 
@@ -177,7 +176,7 @@ export function App() {
                   tasks.filter(task => task.completed == true).length >= 1
                   ?
                   <ScrollArea.Root className="mt-5 flex h-[250px] w-full gap-2 scroll-m-1">
-                    <ScrollArea.Viewport className="w-full">
+                    <ScrollArea.Viewport className="w-full rounded">
                       <div className="w-full pr-1 flex flex-col gap-2">
                         {tasks.filter(task => task.completed == true).map(task => 
                           <TaskCard 
