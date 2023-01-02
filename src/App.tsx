@@ -130,7 +130,7 @@ export function App() {
                   ? 
                   <ScrollArea.Root className="mt-5 flex max-h-[250px] w-full gap-2 scroll-m-1">
                     <ScrollArea.Viewport className="w-full">
-                      <div className="w-full pr-4 flex flex-col gap-2">
+                      <div className="w-full pr-1 flex flex-col gap-2">
                         {tasks.filter(task => task.completed == false).map(task => 
                           <TaskCard 
                             key={task.date} 
@@ -145,15 +145,15 @@ export function App() {
                     </ScrollArea.Viewport>
                     <ScrollArea.Scrollbar 
                       orientation="horizontal"
-                      className="flex h-full p-2 select-none touch-none bg-zinc-900" 
+                      className="flex h-full p-1 select-none touch-none rounded-b bg-zinc-900" 
                     >
-                      <ScrollArea.Thumb className="flex-1 p-2 bg-black border rounded"/>
+                      <ScrollArea.Thumb className="flex-1 p-2 border rounded"/>
                     </ScrollArea.Scrollbar>
                     <ScrollArea.Scrollbar 
                       orientation="vertical"
-                      className="flex h-full p-2 select-none touch-none bg-zinc-900"
+                      className="flex h-full p-1 select-none touch-none rounded-r bg-zinc-900"
                     >
-                      <ScrollArea.Thumb className="flex-1 w-1 bg-black border rounded"/>
+                      <ScrollArea.Thumb className="flex-1 w-1 bg-zinc-900 border rounded"/>
                     </ScrollArea.Scrollbar>
                     <ScrollArea.Corner />
                   </ScrollArea.Root>
@@ -178,7 +178,7 @@ export function App() {
                   ?
                   <ScrollArea.Root className="mt-5 flex h-[250px] w-full gap-2 scroll-m-1">
                     <ScrollArea.Viewport className="w-full">
-                      <div className="w-full pr-4 flex flex-col gap-2">
+                      <div className="w-full pr-1 flex flex-col gap-2">
                         {tasks.filter(task => task.completed == true).map(task => 
                           <TaskCard 
                             key={task.date} 
@@ -193,13 +193,13 @@ export function App() {
                     </ScrollArea.Viewport>
                     <ScrollArea.Scrollbar 
                       orientation="horizontal"
-                      className="flex h-full p-2 select-none touch-none bg-zinc-900" 
+                      className="flex h-full p-2 select-none touch-none rounded-b bg-zinc-900" 
                     >
                       <ScrollArea.Thumb className="flex-1 p-2 bg-black border rounded"/>
                     </ScrollArea.Scrollbar>
                     <ScrollArea.Scrollbar 
                       orientation="vertical"
-                      className="flex h-full p-2 select-none touch-none bg-zinc-900"
+                      className="flex h-full p-1 select-none touch-none rounded-r bg-zinc-900"
                     >
                       <ScrollArea.Thumb className="flex-1 w-1 bg-black border rounded"/>
                     </ScrollArea.Scrollbar>
