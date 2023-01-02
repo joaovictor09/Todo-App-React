@@ -1,3 +1,6 @@
+<div width="full" height="max" align="center">
+    <img src="./src/assets/logo.svg" height="100em"/>
+</div>
 <h1 align="center">
     <a href="#"> Todo App </a>
 </h1>
@@ -9,11 +12,10 @@
 </h4>
 
 <p align="center">
- <a href="#-about">About</a> •
- <a href="#-Features">Features</a> •
+ <a href="#-sobre">Sobre</a> •
+ <a href="#funcionalidades">Funcionalidades</a> •
  <a href="#-layout">Layout</a> • 
- <a href="#-tech-stack">Tech Stack</a> • 
- <a href="#-author">Author</a> • 
+ <a href="#-tecnologias">Tecnologias</a> • 
  <a href="#-license">License</a>
 
 </p>
@@ -32,27 +34,16 @@ O aplicativo se baseia no famoso app de gerenciamento de tarefas, todo.
 - [x] Mostrar quando não tem tarefas cadastradas, pendentes ou completas;
 - [x] Salvar tarefas nos cookies.
 
-<!-- - [ ] Adicionar tags nas tarefas;
-- [ ] Criar backend;
-- [ ] Fazer sistema de autenticação ; -->
-
----
-
 ## 🎨 Layout
 
 https://www.figma.com/file/T4gow4wBi5miqLdtHlphBJ
 
 By 
-mysel
+[João Victor](https://github.com/joaovictor09/)
 
 ---
 
 ## 🚀 Como executar o projeto.
-
-Este projeto é divido em uma parte:
-1. Frontend 
-<!-- 2. Backend (API Json-Server)  -->
-
 
 ### Pré-requisitos
 
@@ -79,7 +70,7 @@ $ npm install
 # Rode a aplicação em modo de desenvolvimento:
 $ npm run dev
 
-# O servidor inciará na porta:5173 - acesse <   http://127.0.0.1:5173/ >
+# O servidor inciará na porta:5173 - acesse <   http://localhost:5173/ >
 ```
 ---
 
@@ -103,16 +94,14 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - Typescript
 - React.js
 - RadixUI
+- Universal Cookie
 
 ---
 
 
 ## 💻 Sobre:
 
-
 Um projeto elaborado pra fazer um controle de tarefas, facilitando a organização do usuário.
-
-
 
 ---
 
