@@ -1,8 +1,7 @@
-import { ListChecks, PlusCircle, Trash, Check } from "phosphor-react"
-
-import * as Checkbox from "@radix-ui/react-checkbox"
-import { TaskCard } from "./Components/TaskCard"
+import { ListChecks, PlusCircle } from "phosphor-react"
 import { useState } from "react"
+
+import { TaskCard } from "./Components/TaskCard"
 
 interface TasksProps {
   title: string,
@@ -12,9 +11,9 @@ interface TasksProps {
 
 export function App() {
 
-  const [test, setTest] = useState<string[]>([]);
-  const [tasks, setTasks] = useState<TasksProps[]>([])
-  const [taskTitle, setTaskTitle] = useState("")
+  const [tasks, setTasks] = useState<TasksProps[]>([]);
+  const [completedTasks, setCompletedTasks] = useState<TasksProps[]>([]);
+  const [taskTitle, setTaskTitle] = useState("");
 
   function addTaskHandle(){
     if (taskTitle.length >= 3){
@@ -27,8 +26,21 @@ export function App() {
   }
 
   function deleteTaskHandle(date:number){
-    setTasks(tasks.filter(task => task.date !== date));
-    return
+    const newTask = tasks.filter(task => task.date !== date);
+    setTasks(newTask);
+    updateTasksCompleted(newTask);
+  }
+
+  function setTaskCompleted(date: number){
+    const index = tasks.findIndex(task => task.date == date);
+    const newTasks = tasks
+    newTasks[index].completed = !newTasks[index].completed;
+    setTasks(newTasks)
+    setCompletedTasks(tasks.filter(task => task.completed == true));
+  }
+
+  function updateTasksCompleted(tasks: TasksProps[]){
+    setCompletedTasks(tasks.filter(task => task.completed == true));
   }
 
   return (
@@ -68,7 +80,7 @@ export function App() {
               </span>
               <div className="flex rounded-[100%] bg-zinc-700 h-5 w-5 text-xs items-center justify-center">
                 <span className="text-violet-500 font-bold">
-                  1
+                  {tasks.length}
                 </span>
               </div>
             </div>
@@ -78,7 +90,7 @@ export function App() {
               </span>
               <div className="flex rounded-[100%] bg-zinc-700 h-5 w-5 text-xs items-center justify-center">
                 <span className="text-violet-500 font-bold">
-                  1
+                  {completedTasks.length}
                 </span>
               </div>
             </div>
@@ -88,7 +100,15 @@ export function App() {
 
           <div className="w-full flex flex-col mt-5 gap-2">
 
-            {tasks.map(task => <TaskCard key={task.date} completed={task.completed} date={task.date} title={task.title} deleteTask={deleteTaskHandle}/>)}
+            {tasks.map(task => 
+              <TaskCard 
+                key={task.date} 
+                completed={task.completed} 
+                date={task.date} 
+                title={task.title} 
+                deleteTask={deleteTaskHandle}
+                setTaskCompleted={setTaskCompleted}
+              />)}
 
           </div>
 

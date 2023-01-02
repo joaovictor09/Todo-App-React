@@ -1,5 +1,4 @@
 import { Trash, Check } from "phosphor-react"
-
 import * as Checkbox from "@radix-ui/react-checkbox"
 import { useState } from "react"
 
@@ -8,6 +7,7 @@ interface TaskCardProps {
   completed: boolean,
   date: number,
   deleteTask: (date: number) => void,
+  setTaskCompleted: (date: number) => void,
 }
 
 export function TaskCard(props: TaskCardProps){
@@ -21,6 +21,7 @@ export function TaskCard(props: TaskCardProps){
           className="border-2 w-6 h-6 border-violet-500 rounded-full flex items-center justify-center"
           onCheckedChange={(checked: boolean) => checked === true ? setCompleted(true) : setCompleted(false)}
           checked={completed}
+          onClick={() => props.setTaskCompleted(props.date)}
         >
           <Checkbox.Indicator>
             <Check className="text-violet-500 " weight="bold"/>
