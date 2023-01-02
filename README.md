@@ -66,7 +66,7 @@ $ npm install
 # Rode a aplicação em modo de desenvolvimento:
 $ npm run dev
 
-# O servidor inciará na porta:3000 - acesse <   http://127.0.0.1:5173/ >
+# O servidor inciará na porta:5173 - acesse <   http://127.0.0.1:5173/ >
 ```
 ---
 
