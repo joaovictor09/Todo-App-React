@@ -37,8 +37,8 @@ O aplicativo se baseia no famoso app de gerenciamento de tarefas, todo.
 ## 🚀 Como executar o projeto.
 
 Este projeto é divido em duas partes:
-1. Backend (API Json-Server) 
-2. Frontend 
+1. Frontend 
+<!-- 2. Backend (API Json-Server)  -->
 
 
 ### Pré-requisitos
