@@ -8,7 +8,7 @@
 <p align="center"> Seu aplicativo para controle de tarefas </p>
 
 <h4 align="center"> 
-	 Status: Em desenvolvimento.
+	 Status: Completo.
 </h4>
 
 <p align="center">
