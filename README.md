@@ -104,9 +104,17 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Sobre:
 
-Um projeto elaborado pra fazer um controle de tarefas, facilitando a organização do usuário.
+Um projeto elaborado pra fazer um controle simplificado de tarefas, facilitando a organização do usuário.
 
 ---
+
+## 💡 Banco de ideias:
+
+- Criar backend para fazer um sistema de login;
+- Criar tags para as tarefas, para melhor organização;
+
+--
+
 
 ## 📝 License
 
