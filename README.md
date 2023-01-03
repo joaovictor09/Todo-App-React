@@ -22,7 +22,7 @@
 
 ## 💻 Sobre:
 
-O aplicativo se baseia no famoso app de gerenciamento de tarefas, todo.
+O aplicativo se baseia no famoso app de gerenciamento de tarefas, To do list.
 
 ---
 
@@ -32,7 +32,8 @@ O aplicativo se baseia no famoso app de gerenciamento de tarefas, todo.
 - [x] Contador de tarefas totais x tarefas completas;
 - [x] Separar as tarefas por tarefas pendentes e tarefas completas;
 - [x] Mostrar quando não tem tarefas cadastradas, pendentes ou completas;
-- [x] Salvar tarefas nos cookies.
+- [x] Salvar tarefas nos cookies;
+- [x] Responsividade.
 
 ## 🎨 Layout
 
