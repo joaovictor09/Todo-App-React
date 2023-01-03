@@ -24,7 +24,7 @@ export function TaskCard(props: TaskCardProps){
     console.log(typeof(dontAskCookie))
     if(force){
       if(dontAsk == true){
-        cookies.set("dontAsk", true, { path: '/', maxAge: 60  })
+        cookies.set("dontAsk", true, { path: '/', maxAge: 60 * 5 })
       }
       props.deleteTask(props.date)
     }
