@@ -49,11 +49,14 @@ export function App() {
   useEffect(() => {
     // Save tasks
     cookies.set('tasks', JSON.stringify(tasks), { path: '/' });
-    console.log("tasks", cookies.get('tasks'));
+    if(!cookies.get("dontAsk")) {
+      cookies.set("dontAsk", false)
+    }
+
   }, [tasks])
 
   return (
-    <div className="w-full h-screen flex flex-col items-center bg-zinc-900 md:overflow-visible">
+    <div className="w-full h-screen flex flex-col items-center bg-zinc-900 md:overflow-visible lg:overflow-clip">
       <div className="flex items-center py-16 gap-4">
         <ListChecks size="32" className="text-violet-500"/>
         <h1 className="text-2xl font-bold text-white">Todo</h1>
