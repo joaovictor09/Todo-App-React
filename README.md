@@ -22,7 +22,7 @@
 
 ## 💻 Sobre:
 
-O aplicativo se baseia no famoso app de gerenciamento de tarefas, todo.
+O aplicativo se baseia no famoso app de gerenciamento de tarefas, To do list.
 
 ---
 
