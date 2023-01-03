@@ -113,7 +113,7 @@ Um projeto elaborado pra fazer um controle simplificado de tarefas, facilitando 
 - Criar backend para fazer um sistema de login;
 - Criar tags para as tarefas, para melhor organização;
 
---
+---
 
 
 ## 📝 License
