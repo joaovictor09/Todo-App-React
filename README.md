@@ -34,8 +34,8 @@ O aplicativo se baseia no famoso app de gerenciamento de tarefas, To do list.
 - [x] Mostrar quando não tem tarefas cadastradas, pendentes ou completas;
 - [x] Salvar tarefas nos cookies;
 - [x] Responsividade;
-- [x] Mostrar modal para confirmar deleção de tarefa
-    - [x] Adicionar botão de Não perguntar novamente;
+- [x] Mostrar modal para confirmar deleção de tarefa:
+    - [x] Adicionar botão de Não perguntar novamente.
 
 ## 🎨 Layout
 
