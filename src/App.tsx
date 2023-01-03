@@ -20,12 +20,12 @@ export function App() {
   function addTask(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault();
 
-    if (taskTitle.length >= 3){
+    if (taskTitle.length >= 2){
       const actualDate = Date.now();
       setTasks([...tasks, {title: taskTitle, completed:false, date:actualDate}])
       setTaskTitle("");
     } else{
-      alert("Insira uma tarefa com mais de 3 dígitos")
+      alert("Insira uma tarefa com 2 ou mais dígitos")
     }
   }
 
@@ -69,7 +69,7 @@ export function App() {
               type="text"
               onChange={e => setTaskTitle(e.target.value)}
               value={taskTitle}
-              minLength={4}
+              minLength={2}
               className="w-full bg-zinc-700 rounded px-5 py-3 placeholder:text-zinc-400 text-white outline-none focus:border border-zinc-400"
               placeholder="Insira sua tarefa"
             />
