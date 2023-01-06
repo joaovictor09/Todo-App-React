@@ -52,6 +52,7 @@ export function App() {
     if(!cookies.get("dontAsk")) {
       cookies.set("dontAsk", false)
     }
+    
 
   }, [tasks])
 
