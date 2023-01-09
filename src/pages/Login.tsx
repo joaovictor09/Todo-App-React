@@ -2,7 +2,8 @@ import { ListChecks, Password, User } from "phosphor-react";
 import { useForm } from "react-hook-form";
 import Cookies from "universal-cookie";
 import { Link, useNavigate } from 'react-router-dom'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Loading } from "../Components/Loading";
 
 interface IUserLogin {
   username: string;
@@ -14,9 +15,13 @@ export function Login(){
   const cookies = new Cookies();
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const { register, handleSubmit } = useForm<IUserLogin>();
   
   async function handleLogin({ username, password }: IUserLogin){
+    setIsLoading(true);
+
     const requestBody = {
       username,
       password
@@ -36,7 +41,8 @@ export function Login(){
     }
 
     cookies.set('todo_token', response.token, { path: '/', maxAge: 60 * 60 * 12 });
-    return navigate("/todos")
+    setIsLoading(false);
+    return navigate("/todos");
   }
 
   useEffect(() => {
@@ -99,6 +105,11 @@ export function Login(){
           <Link to="/signin" className="text-zinc-200 font-light text-sm underline">Não tem conta? Registre-se</Link>
         </div>
       </form>
+
+      {
+        isLoading == true &&
+        <Loading />
+      }
 
     </div>
   )
