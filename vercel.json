@@ -1,9 +1,5 @@
 {
   "rewrites":  [
-    {"source": "/(.*)", "destination": "/"},
-    { "src": "/", "dest": "/" },
-    { "src": "/todos", "dest": "/" },
-    { "src": "/login", "dest": "/" },
-    { "src": "/signin", "dest": "/" }
+    {"source": "/(.*)", "destination": "/"}
   ]
 }
