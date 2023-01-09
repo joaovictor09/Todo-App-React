@@ -1,6 +1,7 @@
 import { Checks, ListChecks, PlusCircle, Scroll, Warning } from "phosphor-react"
-import Cookies from 'universal-cookie';
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import Cookies from 'universal-cookie';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 
 import { TaskCard } from "../Components/TaskCard";
@@ -15,10 +16,43 @@ interface TasksProps {
 export function Todos() {
 
   const cookies = new Cookies();
-  const [tasks, setTasks ] = useState<TasksProps[]>(cookies.get('tasks') || []);
+  const navigate = useNavigate();
+  const [tasks, setTasks ] = useState<TasksProps[]>([]);
   const [taskTitle, setTaskTitle] = useState("");
 
-  function addTask(e: React.FormEvent<HTMLFormElement>){
+  async function handleListAllTodos(token: string){
+    const request = await fetch('http://localhost:3000/todos', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+
+    if (request.status === 401){
+      cookies.remove('todo_token')
+      return navigate('/');
+    }
+
+    const data = await request.json()
+    
+    setTasks(data)
+    cookies.set('tasks', JSON.stringify(data), { path: '/' });
+
+    return await request.json()
+  }
+
+  useEffect(() => {
+    cookies.remove('tasks')
+    const token = cookies.get('todo_token');
+    if (!token){
+      navigate('/');
+    }
+    handleListAllTodos(token)
+  }, [])
+
+
+  async function addTask(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault();
 
     if (taskTitle.length >= 2){
