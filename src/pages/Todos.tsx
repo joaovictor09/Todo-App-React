@@ -7,6 +7,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 import { TaskCard } from "../Components/TaskCard";
 
 interface TasksProps {
+  id: string;
   title: string,
   completed: boolean,
   date: number
@@ -38,26 +39,33 @@ export function Todos() {
     
     setTasks(data)
     cookies.set('tasks', JSON.stringify(data), { path: '/' });
-
-    return await request.json()
+    return 
   }
-
-  useEffect(() => {
-    cookies.remove('tasks')
-    const token = cookies.get('todo_token');
-    if (!token){
-      navigate('/');
-    }
-    handleListAllTodos(token)
-  }, [])
 
 
   async function addTask(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault();
 
     if (taskTitle.length >= 2){
+      const token = cookies.get('todo_token');
       const actualDate = Date.now();
-      setTasks([...tasks, {title: taskTitle, completed:false, date:actualDate}])
+
+      const requestBody = {
+        title: taskTitle
+      }
+      
+      const task = await fetch("http://localhost:3000/todos", {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+        headers: {
+          "Authorization": "Bearer " + token,
+          "Content-Type": "application/json"
+        }
+      })
+
+      const { completed, date, id, title }:TasksProps = await task.json()
+
+      setTasks([...tasks, {title, completed, date:actualDate, id}])
       setTaskTitle("");
     } else{
       alert("Insira uma tarefa com 2 ou mais dígitos")
@@ -82,13 +90,18 @@ export function Todos() {
   }
 
   useEffect(() => {
-    // Save tasks
-    cookies.set('tasks', JSON.stringify(tasks), { path: '/' });
     if(!cookies.get("dontAsk")) {
       cookies.set("dontAsk", false)
     }
 
-  }, [tasks])
+    cookies.remove('tasks')
+    const token = cookies.get('todo_token');
+    if (!token){
+      navigate('/');
+    }
+    handleListAllTodos(token)
+
+  }, [])
 
   return (
     <div className="w-full h-screen flex flex-col items-center bg-zinc-900 md:overflow-visible lg:overflow-clip">
@@ -170,7 +183,8 @@ export function Todos() {
                       <div className="w-full pr-1 flex flex-col gap-2">
                         {tasks.filter(task => task.completed == false).map(task => 
                           <TaskCard 
-                            key={task.date} 
+                            key={task.id} 
+                            id={task.id}
                             completed={task.completed} 
                             date={task.date} 
                             title={task.title} 
@@ -218,7 +232,8 @@ export function Todos() {
                       <div className="w-full pr-1 flex flex-col gap-2">
                         {tasks.filter(task => task.completed == true).map(task => 
                           <TaskCard 
-                            key={task.date} 
+                            key={task.id} 
+                            id={task.id}
                             completed={task.completed} 
                             date={task.date} 
                             title={task.title} 

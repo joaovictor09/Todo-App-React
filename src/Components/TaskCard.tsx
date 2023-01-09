@@ -6,6 +6,7 @@ import * as Checkbox from "@radix-ui/react-checkbox"
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
 interface TaskCardProps {
+  id: string;
   title: string,
   completed: boolean,
   date: number,
