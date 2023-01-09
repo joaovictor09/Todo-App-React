@@ -53,13 +53,13 @@ export function SignIn(){
   }, [])
 
   return (
-    <div className="w-full h-screen flex flex-col items-center">
+    <div className="w-full h-screen flex flex-col items-center px-4 md:px-0">
       <div className="flex flex-col gap-7 items-center mt-16">
-        <div className="flex gap-5 items-center">
-          <ListChecks size="122" weight="bold" className="text-violet-500"/>
-          <h2 className="text-8xl font-bold text-white">Todo</h2>
+        <div className="flex gap-5 items-center text-7xl md:text-9xl">
+          <ListChecks weight="bold" className="text-violet-500"/>
+          <h2 className="font-bold text-white">Todo</h2>
         </div>
-        <h1 className="text-white font-semibold text-2xl">Seu app de organização <span className="text-violet-500">simplificado</span></h1>
+        <h1 className="text-white font-semibold text-2xl text-center">Seu app de organização <span className="text-violet-500">simplificado</span></h1>
       </div>
 
       <form 
