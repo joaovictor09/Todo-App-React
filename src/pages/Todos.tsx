@@ -5,6 +5,7 @@ import Cookies from 'universal-cookie';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 
 import { TaskCard } from "../Components/TaskCard";
+import { Loading } from "../Components/Loading";
 
 interface TasksProps {
   id: string;
@@ -20,9 +21,11 @@ export function Todos() {
   const navigate = useNavigate();
   const [tasks, setTasks ] = useState<TasksProps[]>([]);
   const [taskTitle, setTaskTitle] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleListAllTodos(token: string){
-    const request = await fetch('http://localhost:3000/todos', {
+    setIsLoading(true);
+    const request = await fetch('https://todo-1wo5.onrender.com/todos', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -32,29 +35,30 @@ export function Todos() {
 
     if (request.status === 401){
       cookies.remove('todo_token')
-      return navigate('/');
+      navigate('/');
+      return;
     }
 
-    const data = await request.json()
+    const data:TasksProps[] = await request.json()
     
     setTasks(data)
-    cookies.set('tasks', JSON.stringify(data), { path: '/' });
+    setIsLoading(false);
     return 
   }
 
 
-  async function addTask(e: React.FormEvent<HTMLFormElement>){
+  async function handleAddTask(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault();
+    setIsLoading(true);
 
     if (taskTitle.length >= 2){
       const token = cookies.get('todo_token');
-      const actualDate = Date.now();
 
       const requestBody = {
         title: taskTitle
       }
       
-      const task = await fetch("http://localhost:3000/todos", {
+      const task = await fetch("https://todo-1wo5.onrender.com/todos", {
         method: "POST",
         body: JSON.stringify(requestBody),
         headers: {
@@ -63,45 +67,61 @@ export function Todos() {
         }
       })
 
-      const { completed, date, id, title }:TasksProps = await task.json()
-
-      setTasks([...tasks, {title, completed, date:actualDate, id}])
       setTaskTitle("");
+      handleListAllTodos(token)
+
     } else{
       alert("Insira uma tarefa com 2 ou mais dígitos")
     }
+    setIsLoading(false);
   }
 
-  function deleteTask(date:number){
-    const newTask = tasks.filter(task => task.date !== date);
+  async function deleteTask(id:string){
+    setIsLoading(true);
+    const token = cookies.get('todo_token');
+
+    const task = await fetch(`https://todo-1wo5.onrender.com/todos/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": "Bearer " + token,
+          "Content-Type": "application/json"
+        }
+      })
+
+    const newTask = tasks.filter(task => task.id !== id);
     setTasks(newTask);
+    handleListAllTodos(token)
+    setIsLoading(false);
   }
 
-  function setTaskCompletedOrPending(date: number){
-    const newTasks = tasks;
+  async function setTaskCompletedOrPending(id: string){
+    setIsLoading(true);
+    const token = cookies.get('todo_token');
 
-    const index = tasks.findIndex(task => task.date == date);
-    newTasks[index].completed = !newTasks[index].completed;
+    const task = await fetch(`https://todo-1wo5.onrender.com/todos/${id}`, {
+        method: "PUT",
+        headers: {
+          "Authorization": "Bearer " + token,
+          "Content-Type": "application/json"
+        }
+      })
 
-    const completedTasks = newTasks.filter(task => task.completed == true);
-    const pendingTasks = newTasks.filter(task => task.completed == false);
-
-    setTasks(completedTasks.concat(pendingTasks));
+    handleListAllTodos(token)
+    setIsLoading(false);
   }
 
   useEffect(() => {
+    setIsLoading(true);
     if(!cookies.get("dontAsk")) {
       cookies.set("dontAsk", false)
     }
 
-    cookies.remove('tasks')
     const token = cookies.get('todo_token');
     if (!token){
       navigate('/');
     }
-    handleListAllTodos(token)
-
-  }, [])
+    handleListAllTodos(token).then(()=> {setIsLoading(false)})
+  },[])
 
   return (
     <div className="w-full h-screen flex flex-col items-center bg-zinc-900 md:overflow-visible lg:overflow-clip">
@@ -111,7 +131,7 @@ export function Todos() {
       </div>
 
         <form 
-          onSubmit={e => addTask(e)}
+          onSubmit={e => handleAddTask(e)}
           className="max-w-2xl w-full"
         >
           <div className="max-w-2xl w-full flex gap-2 h-full flex-col px-5 items-center
@@ -189,7 +209,7 @@ export function Todos() {
                             date={task.date} 
                             title={task.title} 
                             deleteTask={deleteTask}
-                            setTaskCompleted={() => setTaskCompletedOrPending(task.date)}
+                            setTaskCompleted={() => setTaskCompletedOrPending(task.id)}
                           />)}
                       </div>
                       
@@ -238,7 +258,7 @@ export function Todos() {
                             date={task.date} 
                             title={task.title} 
                             deleteTask={deleteTask}
-                            setTaskCompleted={() => setTaskCompletedOrPending(task.date)}
+                            setTaskCompleted={() => setTaskCompletedOrPending(task.id)}
                           />)}
                       </div>
                       
@@ -279,6 +299,10 @@ export function Todos() {
           
         </div>
       </div>
+      {
+        isLoading == true &&
+        <Loading />
+      }
     </div>
   )
 }
