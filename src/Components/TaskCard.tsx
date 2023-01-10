@@ -63,8 +63,6 @@ export function TaskCard(props: TaskCardProps){
             <Trash size={24} className="text-zinc-400"/>
           </button>
         </AlertDialog.Trigger>
-        {dontAskCookie
-            &&
             <AlertDialog.Portal  className={`fixed w-screen h-screen flex items-center justify-center`}>
               <AlertDialog.Overlay className="fixed inset-0 bg-black opacity-30"/>
                 <div className="fixed max-w-md mx-auto flex flex-col items-center w-full px-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -108,7 +106,6 @@ export function TaskCard(props: TaskCardProps){
                   </AlertDialog.Content>
                 </div>
               </AlertDialog.Portal>
-          }
       </AlertDialog.Root>
       {
         isLoading == true &&
