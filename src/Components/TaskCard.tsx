@@ -21,7 +21,7 @@ export function TaskCard(props: TaskCardProps){
   const [completed, setCompleted] = useState(props.completed);
   const [dontAsk, setDontAsk] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
-  const dontAskCookie = cookies.get('dontAsk');
+  const dontAskCookie = cookies.get<boolean>('dontAsk');
 
   async function deleteHandle(force?: boolean) {
     setIsLoading(true)
@@ -63,11 +63,9 @@ export function TaskCard(props: TaskCardProps){
             <Trash size={24} className="text-zinc-400"/>
           </button>
         </AlertDialog.Trigger>
-        {dontAskCookie == false
+        {dontAskCookie
             &&
-            <>
             <AlertDialog.Portal  className={`fixed w-screen h-screen flex items-center justify-center`}>
-          
               <AlertDialog.Overlay className="fixed inset-0 bg-black opacity-30"/>
                 <div className="fixed max-w-md mx-auto flex flex-col items-center w-full px-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                   <AlertDialog.Content hidden={!dontAsk} className="flex flex-col rounded items-center gap-5 bg-zinc-800 px-3 py-3">
@@ -110,9 +108,12 @@ export function TaskCard(props: TaskCardProps){
                   </AlertDialog.Content>
                 </div>
               </AlertDialog.Portal>
-            </>
           }
       </AlertDialog.Root>
+      {
+        isLoading == true &&
+        <Loading />
+      }
     </div>
   )
 }

@@ -36,6 +36,7 @@ export function Todos() {
     if (request.status === 401){
       cookies.remove('todo_token')
       navigate('/');
+      setIsLoading(false);
       return;
     }
 
@@ -106,7 +107,7 @@ export function Todos() {
         }
       })
 
-    handleListAllTodos(token)
+    handleListAllTodos(token).then()
     setIsLoading(false);
   }
 
