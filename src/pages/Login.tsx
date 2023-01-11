@@ -37,6 +37,7 @@ export function Login(){
     const response = await request.json()
 
     if (response.status === 'Error'){
+      setIsLoading(false);
       return alert(`Erro ao efetuar login! ${response.message}`);
     }
 

@@ -36,6 +36,7 @@ export function SignIn(){
     const response = await request.json()
     
     if (response.status === 'Error'){
+      setIsLoading(false);
       return alert(`Erro ao criar conta! ${response.message}`);
     }
 
